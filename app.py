@@ -11,17 +11,24 @@ from xml.sax.saxutils import escape
 from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font, PatternFill, Alignment
 from openpyxl.utils import get_column_letter
+from flask_cors import CORS
+
+
 
 app=Flask(__name__)
 app.config['MAX_CONTENT_LENGTH']=12*1024*1024
+
 CORS(
     app,
-    resources={r"/api/*": {
-        "origins": [
-            "http://localhost:5057",
-            "http://127.0.0.1:5057"
-        ]
-    }}
+    resources={
+        r"/api/*": {
+            "origins": [
+                "https://shop911.github.io",
+                "http://localhost:5057",
+                "http://127.0.0.1:5057"
+            ]
+        }
+    }
 )
 ALLOWED={'.pdf','.docx','.xlsx'}
 
